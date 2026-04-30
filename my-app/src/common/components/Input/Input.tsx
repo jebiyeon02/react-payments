@@ -9,9 +9,10 @@ const STROKE_MODE_COLOR: Record<StrokeModeType, string> = {
 };
 
 type InputPropsType = {
-  value: string;
+  value?: string;
   placeholder: string;
-  strokeMode: StrokeModeType;
+  onChange: (e: any) => void;
+  strokeMode?: StrokeModeType;
 };
 
 const StyledInput = styled.input<{$strokeMode: StrokeModeType}>`
@@ -23,8 +24,10 @@ const StyledInput = styled.input<{$strokeMode: StrokeModeType}>`
   border-radius: 4px;
 `;
 
-const Input = ({value, placeholder, strokeMode = 'default'}: InputPropsType) => {
-  return <StyledInput $strokeMode={strokeMode} placeholder={placeholder} value={value}></StyledInput>;
+const Input = ({value, placeholder, onChange, strokeMode = 'default'}: InputPropsType) => {
+  return (
+    <StyledInput $strokeMode={strokeMode} onChange={onChange} placeholder={placeholder} value={value}></StyledInput>
+  );
 };
 
 export default Input;

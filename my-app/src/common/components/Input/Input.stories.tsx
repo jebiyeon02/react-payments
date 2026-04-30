@@ -1,4 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react-vite';
+import {fn} from 'storybook/test';
 
 import Input from './Input';
 
@@ -10,6 +11,7 @@ const meta = {
     value: '',
     placeholder: '',
     strokeMode: 'default',
+    onChange: fn(),
   },
 } satisfies Meta<typeof Input>;
 
