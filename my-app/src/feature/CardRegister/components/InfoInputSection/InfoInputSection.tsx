@@ -13,11 +13,14 @@ const InfoInputSection = ({
   cardInfoHandlers: CardInfoHandlersType;
 }) => {
   const [cvcNumber, setCvcNumber] = useState('');
+  const [isError, setIsError] = useState(false);
 
   const {cardNumbers, expiryMonth, expiryYear} = cardInfo;
   const {setCardNumbers, setExpiryMonth, setExpiryYear} = cardInfoHandlers;
 
-  const [isError, setIsError] = useState(false);
+  if (isError) {
+    console.log('error');
+  }
 
   return (
     <div>
