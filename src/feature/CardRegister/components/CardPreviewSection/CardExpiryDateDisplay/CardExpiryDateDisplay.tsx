@@ -18,7 +18,6 @@ const Container = styled.div`
   display: flex;
   gap: 2px;
   height: 25px;
-  margin-left: 3px;
   font-family: 'Inter', sans-serif;
 `;
 
