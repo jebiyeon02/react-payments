@@ -22,7 +22,7 @@ const Container = styled.div`
 
 const Chunk = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   width: 38px;
