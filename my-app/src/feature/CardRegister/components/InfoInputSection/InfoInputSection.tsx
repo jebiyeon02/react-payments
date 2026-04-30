@@ -4,6 +4,7 @@ import ExpiryField from './ExpiryField/ExpiryField';
 import InputContainer from './InputContainer/InputContainer';
 import NumberField from './NumberField/NumberField';
 import type {CardInfoHandlersType, CardInfoType} from '../../../../common/types/CardInfoType';
+import styled from 'styled-components';
 
 const InfoInputSection = ({
   cardInfo,
@@ -23,7 +24,7 @@ const InfoInputSection = ({
   }
 
   return (
-    <div>
+    <Container>
       <InputContainer title='결제할 카드 번호를 입력해 주세요' description='본인 명의의 카드만 결제 가능합니다.'>
         <NumberField cardNumbers={cardNumbers} setCardNumbers={setCardNumbers} setIsError={setIsError} />
       </InputContainer>
@@ -39,8 +40,17 @@ const InfoInputSection = ({
       <InputContainer title='CVC 번호를 입력해 주세요'>
         <CvcField cvcNumber={cvcNumber} setCvcNumber={setCvcNumber} setIsError={setIsError} />
       </InputContainer>
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 30px;
+
+  width: 100%;
+`;
 
 export default InfoInputSection;
