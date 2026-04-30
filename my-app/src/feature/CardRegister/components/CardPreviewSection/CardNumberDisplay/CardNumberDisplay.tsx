@@ -1,4 +1,4 @@
-const CardNumberDisplay = ({cardNumbers}: {cardNumbers: string}) => {
+const CardNumberDisplay = ({cardNumbers}: {cardNumbers: string[]}) => {
   return <div>{cardNumbers}</div>;
 };
 
