@@ -3,7 +3,7 @@ import CardPreviewSection from './components/CardPreviewSection/CardPreviewSecti
 import InfoInputSection from './components/InfoInputSection/InfoInputSection';
 
 const CardRegisterPage = () => {
-  const [cardNumbers, setCardNumbers] = useState('');
+  const [cardNumbers, setCardNumbers] = useState(['', '', '', '']);
   const [expiryMonth, setExpiryMonth] = useState('');
   const [expiryYear, setExpiryYear] = useState('');
 
@@ -13,10 +13,16 @@ const CardRegisterPage = () => {
     expiryYear,
   };
 
+  const cardInfoHandlers = {
+    setCardNumbers,
+    setExpiryMonth,
+    setExpiryYear,
+  };
+
   return (
     <div>
       <CardPreviewSection cardInfo={cardInfo} />
-      <InfoInputSection />
+      <InfoInputSection cardInfo={cardInfo} cardInfoHandlers={cardInfoHandlers} />
     </div>
   );
 };
