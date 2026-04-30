@@ -1,3 +1,4 @@
+import type {ComponentPropsWithoutRef} from 'react';
 import styled from 'styled-components';
 
 type StrokeModeType = 'default' | 'focus' | 'error';
@@ -8,10 +9,7 @@ const STROKE_MODE_COLOR: Record<StrokeModeType, string> = {
   error: '#FF3D3D',
 };
 
-type InputPropsType = {
-  value?: string;
-  placeholder: string;
-  onChange: (e: any) => void;
+type InputPropsType = ComponentPropsWithoutRef<'input'> & {
   strokeMode?: StrokeModeType;
 };
 
@@ -24,10 +22,8 @@ const StyledInput = styled.input<{$strokeMode: StrokeModeType}>`
   border-radius: 4px;
 `;
 
-const Input = ({value, placeholder, onChange, strokeMode = 'default'}: InputPropsType) => {
-  return (
-    <StyledInput $strokeMode={strokeMode} onChange={onChange} placeholder={placeholder} value={value}></StyledInput>
-  );
+const Input = ({strokeMode = 'default', type = 'text', ...rest}: InputPropsType) => {
+  return <StyledInput $strokeMode={strokeMode} type={type} {...rest} />;
 };
 
 export default Input;
