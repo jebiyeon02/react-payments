@@ -1,16 +1,22 @@
 import Label from '../../../../../common/components/Label/Label';
 import Input from '../../../../../common/components/Input/Input';
-// import {useState} from 'react';
+import {useState} from 'react';
 
 const CvcField = ({
   cvcNumber,
   setCvcNumber,
-  // setIsError,
+  setIsError,
 }: {
   cvcNumber: string;
   setCvcNumber: (value: string) => void;
-  // setIsError: (value: boolean) => void;
+  setIsError: (value: boolean) => void;
 }) => {
+  const INPUT_COUNT = 2;
+
+  const [errorInfo, setErrorInfo] = useState({
+    flag: Array(INPUT_COUNT).fill(false),
+    currentErrorMsg: '',
+  });
   const handleCvcNumberChange = (eValue: string) => {
     const value = eValue.trim();
 
@@ -21,6 +27,22 @@ const CvcField = ({
     setCvcNumber(eValue);
   };
 
+  const ERROR_MSG = 'CVC 번호 3자리를 입력해 주세요';
+
+  const handleCvcBlur = (index: number, eValue: string) => {
+    const isValid = eValue.length === 3;
+    const newFlag = errorInfo.flag.map((flag, i) => (i === index ? !isValid : flag));
+    const firstErrorIdx = newFlag.indexOf(true);
+
+    setErrorInfo({
+      flag: newFlag,
+      currentErrorMsg: firstErrorIdx === -1 ? '' : ERROR_MSG,
+    });
+    setIsError(firstErrorIdx !== -1);
+  };
+
+  const firstErrorIdx = errorInfo.flag.indexOf(true);
+
   return (
     <div>
       <Label value='CVC' />
@@ -30,11 +52,12 @@ const CvcField = ({
           maxLength={3}
           inputMode='numeric'
           placeholder='123'
+          strokeMode={0 === firstErrorIdx ? 'error' : 'default'}
           onChange={(e) => handleCvcNumberChange(e.target.value)}
-          // onBlur={(e) => handleCvcNumberBlur(e.target.value)}
+          onBlur={(e) => handleCvcBlur(0, e.target.value)}
         />
       </div>
-      <span>에러 메시지</span>
+      <span>{errorInfo.currentErrorMsg}</span>
     </div>
   );
 };
