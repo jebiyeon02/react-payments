@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import type {CardInfoType} from '../../../../../common/types/CardInfoType';
 import CardBrandLogo from '../CardBrandLogo/CardBrandLogo';
 import CardExpiryDateDisplay from '../CardExpiryDateDisplay/CardExpiryDateDisplay';
@@ -18,12 +19,33 @@ const CardPreviewContainer = ({cardInfo}: {cardInfo: CardInfoType}) => {
   };
 
   return (
-    <div>
+    <Container>
+      <IcChip></IcChip>
       <CardBrandLogo brandName={getBrandName(cardNumbers)} />
       <CardNumberDisplay cardNumbers={cardNumbers} />
       <CardExpiryDateDisplay expiryMonth={expiryMonth} expiryYear={expiryYear} />
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  position: relative;
+  width: 212px;
+  height: 132px;
+  background-color: #333333;
+  border-radius: 4px;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.25);
+`;
+
+const IcChip = styled.div`
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  width: 36px;
+  height: 22px;
+  background-color: #ddcd78;
+  border-radius: 4px;
+`;
 
 export default CardPreviewContainer;
