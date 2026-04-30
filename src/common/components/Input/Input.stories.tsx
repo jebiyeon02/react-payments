@@ -41,11 +41,3 @@ export const Error: Story = {
     strokeMode: 'error',
   },
 };
-
-export const Focus: Story = {
-  args: {
-    value: '123',
-    placeholder: '1234',
-    strokeMode: 'focus',
-  },
-};
