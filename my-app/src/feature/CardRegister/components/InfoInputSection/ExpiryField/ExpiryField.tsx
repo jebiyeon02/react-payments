@@ -22,7 +22,7 @@ const ExpiryField = ({
     currentErrorMsg: '',
   });
 
-  const handleMonthChange = (eValue: string) => {
+  const handleMonthChange = (index: number, eValue: string) => {
     const value = eValue.trim();
 
     if (!/^\d*$/.test(value)) return;
@@ -46,15 +46,18 @@ const ExpiryField = ({
       if (month < 1 || month > 12) return;
       setExpiryMonth(value);
     }
+
+    handleExpiryBlur(index, eValue);
   };
 
-  const handleYearChange = (eValue: string) => {
+  const handleYearChange = (index: number, eValue: string) => {
     const value = eValue.trim();
 
     if (!/^\d*$/.test(value)) return;
     if (value.length > 2) return;
 
     setExpiryYear(value);
+    handleExpiryBlur(index, eValue);
   };
   const ERROR_MSG = '2자리를 입력해 주세요';
 
@@ -82,7 +85,7 @@ const ExpiryField = ({
           inputMode='numeric'
           placeholder='MM'
           strokeMode={0 === firstErrorIdx ? 'error' : 'default'}
-          onChange={(e) => handleMonthChange(e.target.value)}
+          onChange={(e) => handleMonthChange(0, e.target.value)}
           onBlur={(e) => handleExpiryBlur(0, e.target.value)}
         />
         <Input
@@ -91,7 +94,7 @@ const ExpiryField = ({
           placeholder='YY'
           inputMode='numeric'
           strokeMode={1 === firstErrorIdx ? 'error' : 'default'}
-          onChange={(e) => handleYearChange(e.target.value)}
+          onChange={(e) => handleYearChange(1, e.target.value)}
           onBlur={(e) => handleExpiryBlur(1, e.target.value)}
         />
       </div>

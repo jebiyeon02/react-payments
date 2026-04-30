@@ -17,7 +17,7 @@ const CvcField = ({
     flag: Array(INPUT_COUNT).fill(false),
     currentErrorMsg: '',
   });
-  const handleCvcNumberChange = (eValue: string) => {
+  const handleCvcNumberChange = (index: number, eValue: string) => {
     const value = eValue.trim();
 
     if (!/^\d*$/.test(value)) {
@@ -25,6 +25,7 @@ const CvcField = ({
     }
 
     setCvcNumber(eValue);
+    handleCvcBlur(index, eValue);
   };
 
   const ERROR_MSG = 'CVC 번호 3자리를 입력해 주세요';
@@ -53,7 +54,7 @@ const CvcField = ({
           inputMode='numeric'
           placeholder='123'
           strokeMode={0 === firstErrorIdx ? 'error' : 'default'}
-          onChange={(e) => handleCvcNumberChange(e.target.value)}
+          onChange={(e) => handleCvcNumberChange(0, e.target.value)}
           onBlur={(e) => handleCvcBlur(0, e.target.value)}
         />
       </div>

@@ -26,8 +26,8 @@ const NumberField = ({
     }
 
     const newChunks = cardNumbers.map((chunk, i) => (i === index ? value : chunk));
-
     setCardNumbers(newChunks);
+    handleNumbersBlur(index, eValue);
   };
 
   const ERROR_MSG = '카드 번호 4자리를 입력해 주세요';
