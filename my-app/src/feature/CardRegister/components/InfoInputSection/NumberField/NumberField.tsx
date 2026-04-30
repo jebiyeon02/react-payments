@@ -29,7 +29,7 @@ const NumberField = ({
             key={index}
             value={chunk}
             placeholder='1234'
-            type='text'
+            inputMode='numeric'
             maxLength={4}
             onChange={(e) => handleNumbersChange(index, e.target.value)}
           />
